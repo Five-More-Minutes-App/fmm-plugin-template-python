@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "my-plugin",
+  "name": "My Plugin",
+  "description": "Replace this with what your plugin does, in a sentence or two that a parent can read and understand.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Your Name",
+    "url": "https://example.com"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/your-name/fmm-plugin-my-plugin",
+  "documentation": "https://github.com/your-name/fmm-plugin-my-plugin#readme",
+  "icon": "icon.png",
+  "categories": [
+    "developer"
+  ],
+  "platform": "Python",
+  "permissions": [
+    {
+      "scope": "state:read",
+      "reason": "Shows what is happening on the computer, so the plugin can react to it."
+    }
+  ],
+  "install": {
+    "steps": [
+      {
+        "title": "Get the plugin",
+        "text": "Download or clone the plugin's repository onto a computer on the same network as Five More Minutes.",
+        "link": {
+          "label": "The plugin's repository",
+          "url": "https://github.com/your-name/fmm-plugin-my-plugin"
+        }
+      },
+      {
+        "title": "Tell it how to reach Five More Minutes",
+        "text": "Put these two lines in a file called .env next to the plugin, load them into your environment, and run it with python example.py.",
+        "code": "FMM_URL={{FMM_URL}}\nFMM_API_KEY={{API_KEY}}"
+      }
+    ]
+  },
+  "compatibility": {
+    "apiVersion": 1
+  }
+}
