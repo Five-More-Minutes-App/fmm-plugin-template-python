@@ -89,8 +89,8 @@ from fmm_client import verify_webhook
 # `raw_body` is the body exactly as it arrived: bytes or str, not parsed and re-serialised.
 result = verify_webhook(api_key, headers=request.headers, body=raw_body)
 if not result.ok:
-    ...                                   # answer 401; result.reason is for your log and never holds the key
-event = result.event                      # {"type": "timer.started", "state": {...}, ...}
+    ...  # answer 401; result.reason is for your log and never holds the key
+event = result.event  # {"type": "timer.started", "state": {...}, ...}
 ```
 
 It checks the signature in constant time, refuses a delivery more than five minutes old (the time is signed, so it
