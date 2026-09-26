@@ -74,7 +74,9 @@ class MockFmm:
 
     def parent_starts(self, minutes: int, message: str | None = None) -> tuple[int, dict[str, Any]]:
         if self.timer:
-            return _problem(409, "Not possible right now", "Time is already running on that computer. Add to it instead.")
+            return _problem(
+                409, "Not possible right now", "Time is already running on that computer. Add to it instead."
+            )
         if not minutes or minutes < 1:
             return _problem(400, "Cannot do that", "Say how long: a number of minutes, or a time to stop at.")
         self.lock = None

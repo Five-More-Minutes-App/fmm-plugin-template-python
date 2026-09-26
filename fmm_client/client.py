@@ -123,9 +123,7 @@ class State:
             timer=None
             if timer is None
             else Timer(timer["id"], timer["startsAt"], timer["endsAt"], timer["secondsLeft"], timer.get("message")),
-            lock=None
-            if lock is None
-            else Lock(lock["startsAt"], lock["endsAt"], lock["secondsLeft"], lock["mode"]),
+            lock=None if lock is None else Lock(lock["startsAt"], lock["endsAt"], lock["secondsLeft"], lock["mode"]),
         )
 
 
@@ -179,9 +177,7 @@ class FiveMoreMinutes:
             )
 
         if parts.username or parts.password:
-            raise FmmError(
-                "config", "Do not put a user name or password in the address. The key goes in FMM_API_KEY."
-            )
+            raise FmmError("config", "Do not put a user name or password in the address. The key goes in FMM_API_KEY.")
 
         if not isinstance(api_key, str) or not _KEY_SHAPE.match(api_key):
             # Deliberately does not say what was given.
@@ -237,9 +233,7 @@ class FiveMoreMinutes:
 
         return State.from_json(await self._request("GET", "/state", query=query, timeout=timeout))
 
-    async def start(
-        self, *, minutes: int | None = None, until: str | None = None, message: str | None = None
-    ) -> State:
+    async def start(self, *, minutes: int | None = None, until: str | None = None, message: str | None = None) -> State:
         """Start time: ``minutes`` or ``until`` ("20:00", in the household's time zone), not both.
 
         Starting during a lock lifts the lock.

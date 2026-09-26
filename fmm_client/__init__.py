@@ -2,6 +2,7 @@
 
 from .client import Computer, FiveMoreMinutes, FmmError, Lock, Me, State, Timer
 from .events import describe, events_between
+from .webhook import Verified, sign, signing_key, verify_webhook
 
 __all__ = [
     "Computer",
@@ -11,6 +12,10 @@ __all__ = [
     "Me",
     "State",
     "Timer",
+    "Verified",
     "describe",
     "events_between",
+    "sign",
+    "signing_key",
+    "verify_webhook",
 ]
