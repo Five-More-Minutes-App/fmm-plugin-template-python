@@ -1,6 +1,6 @@
 # Five More Minutes plugin starter (Python)
 
-A starting point for connecting something in your home to [Five More Minutes](https://github.com/Five-More-Minutes-App/fmm-app):
+A starting point for connecting something in your home to [Five More Minutes](https://fivemoreminutes.app):
 a small `aiohttp` client, a helper that turns "the state now" into "what just happened", and a working
 example. Fork it, rename it, and put your idea in the middle.
 
@@ -61,7 +61,7 @@ Everything is under `/api/integrations/v1`, sent with `Authorization: Bearer <yo
 There is no computer id anywhere, because **a key opens exactly one computer**. A request cannot name
 another. Times are absolute instants: count down from `ends_at`, do not count `seconds_left` yourself. The
 full reference, with every error, is in the
-[API documentation](https://github.com/Five-More-Minutes-App/fmm-app/blob/main/docs/plugins/api-v1.md).
+[API documentation](https://api.fivemoreminutes.app/docs).
 
 ### Following a computer
 
@@ -80,7 +80,7 @@ when trying again cannot help: a revoked key, for instance.
 
 Instead of following the computer, a plugin can give Five More Minutes an address and be **sent** a request when
 something happens: time started, added or ended, the computer locked or unlocked, online or offline. Set it with the
-key (`PUT /webhook`, see the [API page](https://github.com/Five-More-Minutes-App/fmm-app/blob/main/docs/plugins/api-v1.md)),
+key (`PUT /webhook`, see the [API page](https://api.fivemoreminutes.app/docs)),
 and check every delivery before believing it:
 
 ```python
