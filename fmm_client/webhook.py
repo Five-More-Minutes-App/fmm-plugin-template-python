@@ -2,7 +2,7 @@
 
 Anyone on your network can send your plugin a request, so a delivery is not believed until its signature
 checks out. The signing key is worked out from your own key's secret, so there is nothing new to store.
-See "Webhooks" in ``docs/plugins/api-v1.md`` in the Five More Minutes repository.
+See "Webhooks" in the public API reference at https://api.fivemoreminutes.app/docs.
 
 >>> result = verify_webhook(api_key, headers=request.headers, body=raw_body)
 >>> if not result.ok:
