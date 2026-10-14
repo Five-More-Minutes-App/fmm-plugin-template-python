@@ -110,3 +110,13 @@ def test_never_puts_the_key_in_what_it_says() -> None:
 
     for headers, body in cases:
         assert KEY not in repr(check(headers, body))
+
+
+def test_a_timestamp_that_is_not_plain_digits_is_refused_and_never_raises() -> None:
+    # "²" and Arabic-Indic digits are digits to str.isdigit() and then break int(); a bad delivery must only be refused.
+    for timestamp in ("²", "١٢٣٤٥٦٧٨٩٠", "12 34", "-5", "1e5"):
+        headers, text = delivery(timestamp=VECTOR_TIMESTAMP)
+        headers["X-FMM-Timestamp"] = timestamp
+        result = verify_webhook(KEY, headers=headers, body=text, now=lambda: NOW)
+        assert not result.ok
+        assert result.reason == "the timestamp is not a number"

@@ -10,6 +10,10 @@ See "Webhooks" in the public API reference at https://api.fivemoreminutes.app/do
 >>> result.event["type"]        # "timer.started", and result.event["state"] is the computer's state then
 
 Check the **raw** body. Re-serialising parsed JSON changes the bytes, and the signature is over the bytes.
+
+A delivery can be replayed within the tolerance window (five minutes) by someone who has seen it. If acting twice
+would matter, remember ``result.delivery_id`` for a little longer than the window and refuse one you have
+already handled.
 """
 
 from __future__ import annotations
@@ -67,7 +71,8 @@ def verify_webhook(
 
     if not signature or not timestamp or not delivery_id:
         return Verified(False, "not a Five More Minutes delivery: headers are missing")
-    if not timestamp.isdigit() or len(timestamp) > 12:
+    # ASCII digits only: str.isdigit() also accepts characters such as "²" that int() then refuses.
+    if not (timestamp.isascii() and timestamp.isdigit()) or len(timestamp) > 12:
         return Verified(False, "the timestamp is not a number")
     if not isinstance(api_key, str) or len(api_key) < 43:
         return Verified(False, "no usable API key to check with")
